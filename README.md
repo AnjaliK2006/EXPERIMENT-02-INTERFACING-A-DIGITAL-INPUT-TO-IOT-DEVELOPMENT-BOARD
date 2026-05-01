@@ -1,13 +1,13 @@
 # EXPERIMENT-02-INTERFACING-A-DIGITAL-INPUT-OUTPUT-TO-IOT-DEVELOPMENT-BOARD
 
 
-**DATE:**
+**DATE:01-04-26**
 
-**NAME:**
+**NAME: ANJALI K**
 
-**ROLL NO:**
+**ROLL NO: 212224040024**
 
-**DEPARTMENT:**
+**DEPARTMENT:CSE**
 
 ## Aim
 
@@ -40,14 +40,14 @@ IR technology is used in a wide range of wireless applications which includes re
 
 1. Click on STM 32 CUBE IDE, the following screen will appear
    
- ![image](https://user-images.githubusercontent.com/36288975/226189166-ac10578c-c059-40e7-8b80-9f84f64bf088.png)
+<img width="1919" height="1079" alt="Screenshot 2026-05-01 134629" src="https://github.com/user-attachments/assets/09dcc48c-0799-4a48-bb96-291402e6fa1b" />
 
 
 2. Click on FILE, click on new stm 32 project
 
-![image](https://user-images.githubusercontent.com/36288975/226189215-2d13ebfb-507f-44fc-b772-02232e97c0e3.png)
+<img width="1919" height="1079" alt="Screenshot 2026-05-01 134812" src="https://github.com/user-attachments/assets/fb17aa5e-c073-49d8-bc25-2bdce0bd9c66" />
 
-![image](https://user-images.githubusercontent.com/36288975/226189230-bf2d90dd-9695-4aaf-b2a6-6d66454e81fc.png)
+<img width="1919" height="1079" alt="Screenshot 2026-05-01 134916" src="https://github.com/user-attachments/assets/99cf145f-7def-43c3-a16e-6ed8b9b59c91" />
 
 3. Select the target to be programmed as shown below and click on next
 
@@ -75,16 +75,16 @@ IR technology is used in a wide range of wireless applications which includes re
 
 8. Edit the program and as per required 
 
-![image](https://user-images.githubusercontent.com/36288975/226189461-a573e62f-a109-4631-a250-a20925758fe0.png)
+<img width="1919" height="1079" alt="Screenshot 2026-05-01 141550" src="https://github.com/user-attachments/assets/01d71df0-f2b6-4747-a75c-4ae77e899f26" />
 
 
 9. Use project and build all 
 
-![image](https://user-images.githubusercontent.com/36288975/226189554-3f7101ac-3f41-48fc-abc7-480bd6218dec.png)
+<img width="1919" height="1079" alt="Screenshot 2026-05-01 141618" src="https://github.com/user-attachments/assets/51fda449-1211-4ccc-b1af-816230acf21f" />
 
 10. Once the project is bulild 
 
-![image](https://user-images.githubusercontent.com/36288975/226189577-c61cc1eb-3990-4968-8aa6-aefffc766b70.png)
+<img width="598" height="388" alt="Screenshot 2026-05-01 141653" src="https://github.com/user-attachments/assets/88c43cc2-2b21-4268-80bd-463701f8b63b" />
 
 11. connect the iot board to power supply and usb
 
@@ -94,7 +94,7 @@ IR technology is used in a wide range of wireless applications which includes re
 
 
 13. Connect the STM board through the COM port, then upload the corresponding project ELF file/Hex file or Bin file in Erasing & Programming Window,while ensuring the board is in flash mode, and click on 'Start Program'.
-    ![image](https://github.com/user-attachments/assets/9383531d-8204-4697-9321-55afb6abee2e)
+<img width="1621" height="871" alt="image" src="https://github.com/user-attachments/assets/505822aa-ef2a-429e-962d-18444097b714" />
 
 14.  After the file download is complete, switch your board to run mode and press the reset button to see the output
 
@@ -102,11 +102,42 @@ IR technology is used in a wide range of wireless applications which includes re
 ## STM 32 CUBE PROGRAM
 
 ```
-// Your STM 32 CUBE Program code here
+#include "main.h"
+#include "stdbool.h"
+bool IRSENSOR;
+void IRPAIR();
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+while (1)
+  {
+    IRPAIR();
+}
+void IRPAIR()
+{
+	IRSENSOR=HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_4);
+	if(IRSENSOR==0){
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+		HAL_Delay(1000);
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+		HAL_Delay(1000);
+	}
+	else{
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+		HAL_Delay(1000);
+	}
+}
 ```
 
 ## OUTPUT
 
+<img width="900" height="1600" alt="image" src="https://github.com/user-attachments/assets/f1539f8d-e4c5-4615-ae35-fd6435902f38" />
+<img width="900" height="1600" alt="image" src="https://github.com/user-attachments/assets/481eeca4-8d8a-4032-9092-5ac46bc79cb8" />
+
+
 ## Result
 
 Interfacing a digital Input (ir pair) with ARM microcontroller based IOT development is executed and the results are verified.
+<img width="1919" height="1079" alt="Screenshot 2026-05-01 134629" src="https://github.com/user-attachments/assets/6b8ee87d-2c96-4e6e-99ec-afd8456591ac" />
